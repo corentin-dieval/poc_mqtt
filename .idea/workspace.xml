@@ -4,50 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d530171-24d8-416c-9a46-a559decc1d88" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/PoC_mqtt_fastapi_grafana.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.python-version" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AGENT.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/api/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/api/routes/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/api/routes/events.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/api/routes/health.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/api/routes/status.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/logging.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/db/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/db/database.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/db/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/mqtt/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/mqtt/client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/schemas/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/schemas/event.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/schemas/status.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/event_service.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/status_service.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mosquitto/config/mosquitto.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/publish_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_api.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_services.py" afterDir="false" />
+    <list default="true" id="3d530171-24d8-416c-9a46-a559decc1d88" name="Changes" comment="Initial project structure with FastAPI, MQTT, PostgreSQL integration and core features&#10;&#10;- Add FastAPI app with modular structure (core, db, schemas, api, mqtt, services)&#10;- Implement event ingestion via MQTT (paho-mqtt v2), async persistence with SQLAlchemy 2.0&#10;- Add endpoints: /health, /status (consolidated machine state), /events (paginated)&#10;- Provide Pydantic v2 schemas for event and status models&#10;- Include Dockerfile, docker-compose.yml, Makefile, and example .env for local/dev setup&#10;- Add test suite for API and service logic (pytest, pytest-asyncio)&#10;- Include scripts for test event publishing and project documentation">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +15,7 @@
   <component name="CopilotChats">
     <option name="panelChat">
       <chat>
-        <option name="activeSessionId" value="b534bb04-d0d4-4657-a7f8-cc455bdfba4c" />
+        <option name="activeSessionId" value="704cd9fd-7ef0-4691-afcc-6e4b8d2143b5" />
         <option name="sessions">
           <session>
             <option name="chatType" value="PANEL" />
@@ -85,6 +43,14 @@
             <option name="status" value="Stopped" />
             <option name="targetType" value="LOCAL" />
           </session>
+          <session>
+            <option name="chatType" value="PANEL" />
+            <option name="id" value="704cd9fd-7ef0-4691-afcc-6e4b8d2143b5" />
+            <option name="modeId" value="Agent" />
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="claude-sonnet-4.6" />
+            <option name="targetType" value="LOCAL" />
+          </session>
         </option>
         <option name="type" value="PANEL" />
       </chat>
@@ -104,6 +70,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "corentin-dieval"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/corentin-dieval/poc_mqtt.git",
+    "accountId": "65aa6f9d-6f68-4aa0-9925-6f000292603c"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -205,7 +183,20 @@
       <option name="presentableId" value="Default" />
       <updated>1779898108826</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial project structure with FastAPI, MQTT, PostgreSQL integration and core features&#10;&#10;- Add FastAPI app with modular structure (core, db, schemas, api, mqtt, services)&#10;- Implement event ingestion via MQTT (paho-mqtt v2), async persistence with SQLAlchemy 2.0&#10;- Add endpoints: /health, /status (consolidated machine state), /events (paginated)&#10;- Provide Pydantic v2 schemas for event and status models&#10;- Include Dockerfile, docker-compose.yml, Makefile, and example .env for local/dev setup&#10;- Add test suite for API and service logic (pytest, pytest-asyncio)&#10;- Include scripts for test event publishing and project documentation">
+      <option name="closed" value="true" />
+      <created>1779902540232</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1779902540232</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial project structure with FastAPI, MQTT, PostgreSQL integration and core features&#10;&#10;- Add FastAPI app with modular structure (core, db, schemas, api, mqtt, services)&#10;- Implement event ingestion via MQTT (paho-mqtt v2), async persistence with SQLAlchemy 2.0&#10;- Add endpoints: /health, /status (consolidated machine state), /events (paginated)&#10;- Provide Pydantic v2 schemas for event and status models&#10;- Include Dockerfile, docker-compose.yml, Makefile, and example .env for local/dev setup&#10;- Add test suite for API and service logic (pytest, pytest-asyncio)&#10;- Include scripts for test event publishing and project documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial project structure with FastAPI, MQTT, PostgreSQL integration and core features&#10;&#10;- Add FastAPI app with modular structure (core, db, schemas, api, mqtt, services)&#10;- Implement event ingestion via MQTT (paho-mqtt v2), async persistence with SQLAlchemy 2.0&#10;- Add endpoints: /health, /status (consolidated machine state), /events (paginated)&#10;- Provide Pydantic v2 schemas for event and status models&#10;- Include Dockerfile, docker-compose.yml, Makefile, and example .env for local/dev setup&#10;- Add test suite for API and service logic (pytest, pytest-asyncio)&#10;- Include scripts for test event publishing and project documentation" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
