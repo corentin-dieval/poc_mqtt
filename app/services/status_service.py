@@ -38,7 +38,6 @@ async def get_consolidated_status(db: AsyncSession, id_product: str) -> Optional
             (Event.machine_id == latest_machine_ts_subq.c.machine_id)
             & (Event.timestamp == latest_machine_ts_subq.c.max_ts)
         )
-        .filter(Event.id_product == id_product) # Ensure filter is applied
     )
     
     result = await db.execute(latest_events_per_machine_stmt)

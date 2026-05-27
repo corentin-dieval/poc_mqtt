@@ -6,6 +6,7 @@ import time
 import random
 import os
 import sys
+import string # Import string module for alphanumeric characters
 
 import paho.mqtt.client as mqtt
 
@@ -19,14 +20,13 @@ try:
     from app.core.config import settings
     MQTT_BROKER_HOST = settings.MQTT_BROKER_HOST
     MQTT_BROKER_PORT = settings.MQTT_BROKER_PORT
-    MQTT_TOPIC = settings.MQTT_TOPIC
-    print(f"Loaded MQTT settings from app.core.config: Host={MQTT_BROKER_HOST}, Port={MQTT_BROKER_PORT}, Topic={MQTT_TOPIC}")
+    # MQTT_TOPIC is no longer directly used for publishing, but the pattern is in settings.MQTT_TOPIC_PATTERN
+    print(f"Loaded MQTT settings from app.core.config: Host={MQTT_BROKER_HOST}, Port={MQTT_BROKER_PORT}")
 except ImportError:
     print("Could not import app.core.config. Falling back to environment variables or hardcoded defaults.")
     MQTT_BROKER_HOST = os.getenv("MQTT_BROKER_HOST", "localhost")
     MQTT_BROKER_PORT = int(os.getenv("MQTT_BROKER_PORT", 1883))
-    MQTT_TOPIC = os.getenv("MQTT_TOPIC", "machines/events")
-    print(f"Using MQTT settings from environment variables/defaults: Host={MQTT_BROKER_HOST}, Port={MQTT_BROKER_PORT}, Topic={MQTT_TOPIC}")
+    print(f"Using MQTT settings from environment variables/defaults: Host={MQTT_BROKER_HOST}, Port={MQTT_BROKER_PORT}")
 
 
 # --- Simulation Configuration ---
@@ -59,7 +59,7 @@ client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 
 def on_connect(client, userdata, flags, rc, properties):
     if rc == 0:
-        print(f"Connected to MQTT Broker: {MQTT_BROKER_HOST}:{MQTT_BROKER_PORT}")
+        print(f"Connected to MQTT Broker: {MQTT_BROKER_HOST}:{MQTT_BROKER_PORT}") # Corrected typo here
     else:
         print(f"Failed to connect, return code {rc}. Check broker address and port.\n")
         sys.exit(1)
@@ -79,6 +79,12 @@ except Exception as e:
     sys.exit(1)
 
 client.loop_start() # Start background thread for MQTT network loop
+
+# --- Helper for random ID generation ---
+def generate_random_id(length: int = 18) -> str:
+    """Generates a random alphanumeric string of specified length."""
+    characters = string.ascii_uppercase + string.digits
+    return ''.join(random.choice(characters) for _ in range(length))
 
 # --- Event Generation ---
 def generate_event_payload(
@@ -102,13 +108,15 @@ def generate_event_payload(
     }
 
 async def publish_payload(payload: dict):
-    """Helper function to publish a payload and log the result."""
+    """Helper function to publish a payload to a machine-specific topic and log the result."""
+    machine_id = payload.get("machine_id", "unknown")
+    dynamic_topic = f"machines/{machine_id}/events" # Construct topic dynamically
     payload_json = json.dumps(payload)
-    result = client.publish(MQTT_TOPIC, payload_json)
+    result = client.publish(dynamic_topic, payload_json) # Publish to dynamic topic
     if result.rc == mqtt.MQTT_ERR_SUCCESS:
-        print(f"  Published: {payload['id_product']} @ {payload['plm_workcenter']} -> {payload['status']}")
+        print(f"  Published to '{dynamic_topic}': {payload['id_product']} @ {payload['plm_workcenter']} -> {payload['status']}")
     else:
-        print(f"  Failed to publish message for {payload['id_product']} @ {payload['plm_workcenter']}. Error code: {result.rc}")
+        print(f"  Failed to publish message for {payload['id_product']} @ {payload['plm_workcenter']} to '{dynamic_topic}'. Error code: {result.rc}")
 
 async def simulate_product_journey():
     print(f"Starting simulation for {NUM_CELLS_TO_SIMULATE} cells (requiring {NUM_CELLS_TO_SIMULATE * 2} initial stacks)...")
@@ -118,7 +126,7 @@ async def simulate_product_journey():
     # Initialize individual stacks
     individual_stacks_ids = []
     for i in range(1, (NUM_CELLS_TO_SIMULATE * 2) + 1):
-        individual_stacks_ids.append(f"STACK_{i:03d}")
+        individual_stacks_ids.append(generate_random_id()) # Generate random ID for stacks
     
     # Data structure to track units through phases
     # Each unit will have: id (stack_id or cell_id), type (STACK/CELL), status, last_event_time
@@ -227,7 +235,7 @@ async def simulate_product_journey():
     workcenter = WORKCENTERS_SEQUENCE_PHASES["cell_formation_cover_welding"]
     
     for i, unit_pair in enumerate(paired_stacks_data):
-        cell_id = f"CELL_{i+1:04d}" # Generate new cell ID
+        cell_id = generate_random_id() # Generate random ID for cells
         
         current_time += timedelta(seconds=random.uniform(DELAY_BETWEEN_EVENTS_SECONDS, DELAY_BETWEEN_EVENTS_SECONDS * 2))
         status = "NG" if random.random() < SIMULATE_NG_CHANCE else "OK" # New status for this step

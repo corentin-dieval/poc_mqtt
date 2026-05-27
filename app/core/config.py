@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     # MQTT
     MQTT_BROKER_HOST: str = "localhost"
     MQTT_BROKER_PORT: int = 1883
-    MQTT_TOPIC: str = "machines/events"
+    MQTT_TOPIC_PATTERN: str = "machines/+/events"  # Renommé et mis à jour
     MQTT_CLIENT_ID: str = "poc-backend"
     MQTT_RECONNECT_DELAY: int = 5
 
@@ -21,4 +21,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-

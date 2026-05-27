@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d530171-24d8-416c-9a46-a559decc1d88" name="Changes" comment="Add .gitignore to exclude IDE and environment files from version control">
+      <change afterPath="$PROJECT_DIR$/scripts/live_simulate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/routes/status.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/routes/status.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/db/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schemas/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/event.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schemas/status.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/status.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/event_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/event_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/mqtt/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/mqtt/client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/services/status_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/status_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/publish_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/publish_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_services.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_services.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +20,7 @@
   <component name="CopilotChats">
     <option name="panelChat">
       <chat>
-        <option name="activeSessionId" value="704cd9fd-7ef0-4691-afcc-6e4b8d2143b5" />
+        <option name="activeSessionId" value="91ad302b-c750-43eb-bd12-d071ad09cfe1" />
         <option name="sessions">
           <session>
             <option name="chatType" value="PANEL" />
@@ -60,6 +56,14 @@
             <option name="modelValue" value="claude-sonnet-4.6" />
             <option name="targetType" value="LOCAL" />
           </session>
+          <session>
+            <option name="chatType" value="PANEL" />
+            <option name="id" value="91ad302b-c750-43eb-bd12-d071ad09cfe1" />
+            <option name="modeId" value="Agent" />
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="claude-sonnet-4.6" />
+            <option name="targetType" value="LOCAL" />
+          </session>
         </option>
         <option name="type" value="PANEL" />
       </chat>
@@ -79,18 +83,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "corentin-dieval"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;corentin-dieval&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/corentin-dieval/poc_mqtt.git",
-    "accountId": "65aa6f9d-6f68-4aa0-9925-6f000292603c"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/corentin-dieval/poc_mqtt.git&quot;,
+    &quot;accountId&quot;: &quot;65aa6f9d-6f68-4aa0-9925-6f000292603c&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -116,17 +120,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.docker-compose.yml.grafana: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.docker-compose.yml.grafana: Compose Deployment.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "develop",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Docker.docker-compose.yml.grafana: Compose Deployment">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="PoC_mqtt_fastapi_grafana" />

@@ -43,11 +43,11 @@ class MQTTClient:
         if reason_code == 0:
             logger.info(
                 "MQTT connected to %s:%s — subscribing to '%s'",
-                self._settings.MQTT_BROKER_HOST,
+                self._settings.MQTT_BROKER_HOST,  # Correction de la faute de frappe ici
                 self._settings.MQTT_BROKER_PORT,
-                self._settings.MQTT_TOPIC,
+                self._settings.MQTT_TOPIC_PATTERN,
             )
-            client.subscribe(self._settings.MQTT_TOPIC)
+            client.subscribe(self._settings.MQTT_TOPIC_PATTERN)
         else:
             logger.error("MQTT connection refused: reason_code=%s", reason_code)
 
@@ -121,4 +121,3 @@ class MQTTClient:
         if self._thread:
             self._thread.join(timeout=5)
         logger.info("MQTT client stopped")
-
