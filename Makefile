@@ -1,4 +1,4 @@
-.PHONY: install dev docker-up docker-down docker-logs test lint format publish-test
+.PHONY: install dev docker-up docker-down docker-logs test lint format publish-test live
 
 install:
 	uv sync
@@ -27,3 +27,5 @@ format:
 publish-test:
 	uv run python scripts/publish_test.py
 
+live:
+	uv run python scripts/live_simulate.py
