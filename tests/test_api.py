@@ -6,6 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 from app.db.database import get_db
 from app.db.models import Base
 from app.main import app
+from tests.test_services import make_payload, save_event # Import make_payload and save_event from test_services
 
 # In-memory SQLite for tests (aiosqlite)
 TEST_DATABASE_URL = "sqlite+aiosqlite:///:memory:"
@@ -64,12 +65,42 @@ async def test_events_pagination_params(client: AsyncClient):
 
 
 @pytest.mark.asyncio
-async def test_status_empty(client: AsyncClient):
+async def test_status_empty(client: AsyncClient, db_session: AsyncSession):
     response = await client.get("/status")
     assert response.status_code == 200
     data = response.json()
-    assert "global_status" in data
-    assert "machines" in data
-    assert data["global_status"] == "OK"
-    assert data["machines"] == []
+    assert "global_summary_status" in data
+    assert "items" in data
+    assert data["global_summary_status"] == "OK"
+    assert data["items"] == []
+
+
+@pytest.mark.asyncio
+async def test_status_consolidated_logic(client: AsyncClient, db_session: AsyncSession):
+    # Product A: Machine 1 (OK), Machine 2 (NG) -> Product A is NG
+    await save_event(db_session, make_payload("MACHINE_01", "OK", id_product="PRODUCT_A"))
+    await save_event(db_session, make_payload("MACHINE_02", "NG", id_product="PRODUCT_A"))
+
+    # Product B: Machine 3 (OK), Machine 4 (OK) -> Product B is OK
+    await save_event(db_session, make_payload("MACHINE_03", "OK", id_product="PRODUCT_B"))
+    await save_event(db_session, make_payload("MACHINE_04", "OK", id_product="PRODUCT_B"))
+
+    response = await client.get("/status")
+    assert response.status_code == 200
+    data = response.json()
+
+    assert data["global_summary_status"] == "NG" # Because PRODUCT_A is NG
+    assert len(data["items"]) == 2
+
+    product_a_status = next(item for item in data["items"] if item["id_product"] == "PRODUCT_A")
+    assert product_a_status["status"] == "NG"
+    assert len(product_a_status["machines"]) == 2
+    assert any(m["machine_id"] == "MACHINE_01" and m["status"] == "OK" for m in product_a_status["machines"])
+    assert any(m["machine_id"] == "MACHINE_02" and m["status"] == "NG" for m in product_a_status["machines"])
+
+    product_b_status = next(item for item in data["items"] if item["id_product"] == "PRODUCT_B")
+    assert product_b_status["status"] == "OK"
+    assert len(product_b_status["machines"]) == 2
+    assert any(m["machine_id"] == "MACHINE_03" and m["status"] == "OK" for m in product_b_status["machines"])
+    assert any(m["machine_id"] == "MACHINE_04" and m["status"] == "OK" for m in product_b_status["machines"])
 

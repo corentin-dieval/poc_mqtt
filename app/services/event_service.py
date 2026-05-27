@@ -20,6 +20,10 @@ async def save_event(db: AsyncSession, payload: EventPayload) -> Event:
     """
     event = Event(
         event_id=str(payload.event_id),
+        id_product=payload.id_product,  # Nouveau champ
+        ipc_source_hostname=payload.ipc_source_hostname,  # Nouveau champ
+        plm_workcenter=payload.plm_workcenter,  # Nouveau champ
+        plm_workunit=payload.plm_workunit,  # Nouveau champ
         machine_id=payload.machine_id,
         timestamp=payload.timestamp,
         status=payload.status,
@@ -29,7 +33,14 @@ async def save_event(db: AsyncSession, payload: EventPayload) -> Event:
     try:
         await db.commit()
         await db.refresh(event)
-        logger.info("Event saved: %s machine=%s status=%s", event.event_id, event.machine_id, event.status)
+        logger.info(
+            "Event saved: %s id_product=%s machine=%s workcenter=%s status=%s",
+            event.event_id,
+            event.id_product,
+            event.machine_id,
+            event.plm_workcenter,
+            event.status,
+        )
         return event
     except IntegrityError:
         await db.rollback()
@@ -52,4 +63,3 @@ async def get_events(
     events = list(result.scalars().all())
 
     return events, total
-

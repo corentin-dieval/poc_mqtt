@@ -4,8 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d530171-24d8-416c-9a46-a559decc1d88" name="Changes" comment="Initial project structure with FastAPI, MQTT, PostgreSQL integration and core features&#10;&#10;- Add FastAPI app with modular structure (core, db, schemas, api, mqtt, services)&#10;- Implement event ingestion via MQTT (paho-mqtt v2), async persistence with SQLAlchemy 2.0&#10;- Add endpoints: /health, /status (consolidated machine state), /events (paginated)&#10;- Provide Pydantic v2 schemas for event and status models&#10;- Include Dockerfile, docker-compose.yml, Makefile, and example .env for local/dev setup&#10;- Add test suite for API and service logic (pytest, pytest-asyncio)&#10;- Include scripts for test event publishing and project documentation">
+    <list default="true" id="3d530171-24d8-416c-9a46-a559decc1d88" name="Changes" comment="Add .gitignore to exclude IDE and environment files from version control">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/routes/status.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/routes/status.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/db/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/status.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/status.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/event_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/event_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/status_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/status_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/publish_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/publish_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_services.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_services.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,12 +200,37 @@
       <option name="project" value="LOCAL" />
       <updated>1779902540232</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add .gitignore to exclude IDE and environment files from version control">
+      <option name="closed" value="true" />
+      <created>1779903062462</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1779903062462</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add .gitignore to exclude IDE and environment files from version control">
+      <option name="closed" value="true" />
+      <created>1779903133015</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1779903133015</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add .gitignore to exclude IDE and environment files from version control">
+      <option name="closed" value="true" />
+      <created>1779903179153</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1779903179153</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial project structure with FastAPI, MQTT, PostgreSQL integration and core features&#10;&#10;- Add FastAPI app with modular structure (core, db, schemas, api, mqtt, services)&#10;- Implement event ingestion via MQTT (paho-mqtt v2), async persistence with SQLAlchemy 2.0&#10;- Add endpoints: /health, /status (consolidated machine state), /events (paginated)&#10;- Provide Pydantic v2 schemas for event and status models&#10;- Include Dockerfile, docker-compose.yml, Makefile, and example .env for local/dev setup&#10;- Add test suite for API and service logic (pytest, pytest-asyncio)&#10;- Include scripts for test event publishing and project documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial project structure with FastAPI, MQTT, PostgreSQL integration and core features&#10;&#10;- Add FastAPI app with modular structure (core, db, schemas, api, mqtt, services)&#10;- Implement event ingestion via MQTT (paho-mqtt v2), async persistence with SQLAlchemy 2.0&#10;- Add endpoints: /health, /status (consolidated machine state), /events (paginated)&#10;- Provide Pydantic v2 schemas for event and status models&#10;- Include Dockerfile, docker-compose.yml, Makefile, and example .env for local/dev setup&#10;- Add test suite for API and service logic (pytest, pytest-asyncio)&#10;- Include scripts for test event publishing and project documentation" />
+    <MESSAGE value="Add .gitignore to exclude IDE and environment files from version control" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add .gitignore to exclude IDE and environment files from version control" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

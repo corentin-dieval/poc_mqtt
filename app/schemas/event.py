@@ -9,6 +9,10 @@ class EventPayload(BaseModel):
     """Payload reçu via MQTT — format standardisé."""
 
     event_id: UUID
+    id_product: str
+    ipc_source_hostname: str
+    plm_workcenter: str
+    plm_workunit: str
     machine_id: str
     timestamp: datetime
     status: Literal["OK", "NG"]
@@ -20,11 +24,11 @@ class EventPayload(BaseModel):
             raise ValueError("timestamp must be timezone-aware (ISO8601 UTC)")
         return v
 
-    @field_validator("machine_id")
+    @field_validator("machine_id", "id_product", "ipc_source_hostname", "plm_workcenter", "plm_workunit")
     @classmethod
-    def machine_id_not_empty(cls, v: str) -> str:
+    def string_fields_not_empty(cls, v: str) -> str:
         if not v.strip():
-            raise ValueError("machine_id must not be empty")
+            raise ValueError("String fields must not be empty")
         return v.strip()
 
 
@@ -35,6 +39,10 @@ class EventResponse(BaseModel):
 
     id: int
     event_id: str
+    id_product: str  # Nouvelle variable
+    ipc_source_hostname: str  # Nouvelle variable
+    plm_workcenter: str  # Nouvelle variable
+    plm_workunit: str  # Nouvelle variable
     machine_id: str
     timestamp: datetime
     status: str
