@@ -1,0 +1,56 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# Environments
+.venv/
+venv/
+env/
+
+# IDE-specific files
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Local environment variables
+.env
+
+# Logs
+*.log
+
+# Docker
+# Ignore Docker volumes and build contexts if they are created locally
+# and not managed by Docker Compose directly.
+# For this project, volumes are typically managed by Docker Compose,
+# so explicit ignores for them might not be strictly necessary unless
+# you have local bind mounts that generate files you don't want to commit.
+# Example:
+# data/
+# logs/
+
+# uv specific cache/install directory
+.uv/
+
+# Test reports
+htmlcov/
+.coverage
+
+# Database files (if any are created locally outside of Docker)
+# For PostgreSQL in Docker, this is usually not an issue.
+# For example, if using SQLite locally:
+# *.sqlite
+# *.db
+
+# Other temporary files
+*.tmp
+*.bak
